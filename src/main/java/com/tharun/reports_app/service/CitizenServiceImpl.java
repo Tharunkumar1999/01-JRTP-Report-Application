@@ -27,8 +27,7 @@ public class CitizenServiceImpl implements CitizenService{
 
     @Override
     public List<CitizenPlan> search(RequestDto requestDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'search'");
+        return citizenPlanRepository.findAll();
     }
 
     @Override

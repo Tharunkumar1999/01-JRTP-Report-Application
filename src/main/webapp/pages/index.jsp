@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -11,7 +13,7 @@
 <body>
     <div class="container">
         <h3 class="pb-3 pt-3">Report Application</h3>
-         <form:form method="POST" action="" modelAttribute="search">
+         <form:form method="POST" action="search" modelAttribute="search">
         <table>
             <tr>
                 <td>Plan Name:</td>
@@ -38,9 +40,9 @@
                 </tr>
                 <tr>
                     <td>Start Date:</td>
-                    <td><form:input path="planStartDate"/></td>
+                    <td><form:input path="planStartDate" type="date"/></td>
                     <td>End Date:</td>
-                    <td><form:input path="planEndDate"/></td>
+                    <td><form:input path="planEndDate" type="date"/></td>
                 </tr>
                 <tr>
                     <td>
@@ -52,7 +54,16 @@
     </form:form>
 
     <hr/>
-
+        <table class="table table-stripped">
+            <tr>
+            <th>Id</th>
+            <th>Holder Name</th>
+            <th>Plan Name</th>
+            <th>Plan Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            </tr>
+        </table>
     <hr/>
 
    <td> Export : <a href="">Excel </a><a href=""> Pdf</a> </td>

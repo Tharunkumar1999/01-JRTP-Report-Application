@@ -17,14 +17,12 @@ public class CitizenServiceImpl implements CitizenService{
 
     @Override
     public List<String> getPlanNames() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPlanNames'");
+        return citizenPlanRepository.getPlanName();
     }
 
     @Override
     public List<String> getPlanStatuses() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPlanStatuses'");
+        return citizenPlanRepository.getPlanStatus();
     }
 
     @Override

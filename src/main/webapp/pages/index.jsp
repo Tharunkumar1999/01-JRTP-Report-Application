@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 
 <html>
 <head>
@@ -54,16 +54,7 @@
     </form:form>
 
     <hr/>
-        <table class="table table-stripped">
-            <tr>
-            <th>Id</th>
-            <th>Holder Name</th>
-            <th>Plan Name</th>
-            <th>Plan Status</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            </tr>
-        </table>
+       
     <hr/>
 
    <td> Export : <a href="">Excel </a><a href=""> Pdf</a> </td>

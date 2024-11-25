@@ -32,6 +32,15 @@ public class ReportController {
         citizenService.exportExcel(response);
     }
 
+    //To downlad data as PDF
+    @GetMapping("/pdf")
+    public void pdfExcel(HttpServletResponse response) throws Exception{
+
+        response.setContentType("application/pdf");
+        response.addHeader("content-Disposition", "attachmen;filename=plans.pdf");
+        citizenService.exportPdf(response);
+    }
+
 
     @PostMapping("/search")
     public String handlerSearch(@ModelAttribute("search") RequestDto requestDto, Model model){

@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -54,6 +53,35 @@
     </form:form>
 
     <hr/>
+
+         <table class="table table-stripped table-hover">
+         <thead>
+            <tr>
+            <th>S.No</th>
+            <th>Holder Name</th>
+            <th>Gender</th>
+            <th>Plan Name</th>
+            <th>Plan Status</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Benifit Amt</th>
+            </tr>
+            </thead>
+            <tbody>
+                <c:forEach items="${plans}" var="plan">
+            <tr>
+                <td>${plan.citizenId} </td>
+                <td>${plan.citizenName} </td>
+                <td>${plan.gender} </td>
+                <td>${plan.planName} </td>
+                <td>${plan.planStatus} </td>
+                <td>${plan.planStartDate} </td>
+                <td>${plan.planEndDate} </td>
+                <td>${plan.benifitAmt} </td>
+            </tr>
+                </c:forEach >
+            </tbody>
+        </table>
        
     <hr/>
 

@@ -10,10 +10,11 @@ import com.tharun.reports_app.dto.RequestDto;
 import com.tharun.reports_app.entity.CitizenPlan;
 import com.tharun.reports_app.service.CitizenService;
 
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -22,8 +23,18 @@ public class ReportController {
     @Autowired
     private CitizenService citizenService;
 
+    //To downlad data as Excel
+    @GetMapping("/excel")
+    public void exportExcel(HttpServletResponse response) throws Exception{
+
+        response.setContentType("application/octet-stream");
+        response.addHeader("content-Disposition", "attachmen;filename=plans.xlsx");
+        citizenService.exportExcel(response);
+    }
+
+
     @PostMapping("/search")
-    public String handlerSearch(RequestDto requestDto, Model model){
+    public String handlerSearch(@ModelAttribute("search") RequestDto requestDto, Model model){
 
         System.out.println(requestDto);
 
@@ -39,14 +50,13 @@ public class ReportController {
 
     @GetMapping("/")
     public String indexPage(Model model){
+        RequestDto req = new RequestDto();
+        model.addAttribute("search", req);
         init(model);
         return "index";
     }
 
     private void init(Model model) {
-        RequestDto req = new RequestDto();
-
-        model.addAttribute("search", req);
         model.addAttribute("names", citizenService.getPlanNames());
         model.addAttribute("status", citizenService.getPlanStatuses());
     }

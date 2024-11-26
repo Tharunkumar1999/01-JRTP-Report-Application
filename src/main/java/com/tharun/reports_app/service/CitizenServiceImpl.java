@@ -1,21 +1,14 @@
 package com.tharun.reports_app.service;
 
+import java.io.File;
 import java.util.List;
-
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import com.tharun.reports_app.utility.*;
-
 import com.tharun.reports_app.dto.RequestDto;
 import com.tharun.reports_app.entity.CitizenPlan;
 import com.tharun.reports_app.repo.CitizenPlanRepository;
-
-import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Service
@@ -29,6 +22,9 @@ public class CitizenServiceImpl implements CitizenService{
 
     @Autowired
     private exportExcel excel;
+
+    @Autowired
+    private sendEmail email;
 
     @Override
     public List<String> getPlanNames() {
@@ -60,9 +56,16 @@ public class CitizenServiceImpl implements CitizenService{
     //To downlad data as Excel
     @Override
     public boolean exportExcel(HttpServletResponse response) throws Exception {
+
         List<CitizenPlan> records=citizenPlanRepository.findAll();
-        excel.generator(response, records);
-        
+        excel.generator(response, records, f);
+
+        String subject = "Type the Subject here";
+        String body = "<h1>Test Mail Body</h1>";
+        String to = "To mail ID";
+        File f = new File("plan.xlsx");
+        email.sendEmail(subject, body, to,f);
+
         return true;
     }
 

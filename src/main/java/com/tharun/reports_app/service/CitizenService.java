@@ -18,6 +18,6 @@ public interface CitizenService {
     //To downlad data as Excel
     public boolean exportExcel(HttpServletResponse response) throws Exception;
 
-    public boolean exportPdf(HttpServletResponse response);
+    public boolean exportPdf(HttpServletResponse response) throws Exception;
 
 }

@@ -2,7 +2,6 @@ package com.tharun.reports_app.utility;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.PageSize;
@@ -10,14 +9,11 @@ import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 import com.tharun.reports_app.entity.CitizenPlan;
-import com.tharun.reports_app.repo.CitizenPlanRepository;
 
 import jakarta.servlet.http.HttpServletResponse;
 
 public class exportPdf  {
 
-    @Autowired
-    private CitizenPlanRepository citizenPlanRepository;
 
     public void generator(HttpServletResponse response, List<CitizenPlan> plans) throws Exception{
     Document document = new Document(PageSize.A4);

@@ -1,7 +1,9 @@
 package com.tharun.reports_app.utility;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.io.File;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Row;
@@ -11,18 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.tharun.reports_app.entity.CitizenPlan;
-import com.tharun.reports_app.repo.CitizenPlanRepository;
-
 import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class exportExcel {
 
-    @Autowired
-    private CitizenPlanRepository citizenPlanRepository;
 
-    public void generator(HttpServletResponse response, List<CitizenPlan> records) throws Exception{
+    public void generator(HttpServletResponse response, List<CitizenPlan> records, File file) throws Exception{
     // Workbook workbook = new XSSFWorkbook();
         Workbook workbook = new HSSFWorkbook();
 
@@ -53,8 +51,10 @@ public class exportExcel {
             dataRowIndex++;
         }
         
+        FileOutputStream fos=new FileOutputStream(file);
+        fos.close();
+
         ServletOutputStream sos=response.getOutputStream();
-        //FileOutputStream fos=new FileOutputStream(new File("plan.xls"));
         workbook.write(sos);
         workbook.close();
     }
